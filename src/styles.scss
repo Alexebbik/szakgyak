@@ -1,10 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/purple-green.css';
+@import '~@angular/material/theming';
+@include mat-core();
 
-$bgcolor: azure;
+$primary: mat-palette($mat-teal, 600);
+$accent: mat-palette($mat-teal, 600);
 
-html {
-    background-color: $bgcolor;
-}
+$theme: mat-dark-theme($primary, $accent);
+
+$my-background: rgb(19, 196, 149);
+
+$background: map-get($theme, background);
+$background: map_merge($background, (background: $my-background));
+$theme: map_merge($theme, (background: $background));
+
+
+@include angular-material-theme($theme);
 
 html,
 body {

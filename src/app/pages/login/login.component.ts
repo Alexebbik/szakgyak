@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { FakeLoadingService } from '../../shared/services/fake-loading.service';
+//import { FakeLoadingService } from '../../shared/services/fake-loading.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   loading: boolean = false;
 
-  constructor(private router: Router, private loadingService: FakeLoadingService) { }
+  constructor(private router: Router/*, private loadingService: FakeLoadingService*/) { }
 
   ngOnInit(): void {
   }
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     // Observable
     // memory leak
-    this.loadingObservation = this.loadingService.loadingWithObservable(this.email.value, this.password.value)
+    /*this.loadingObservation = this.loadingService.loadingWithObservable(this.email.value, this.password.value)
     this.loadingSubscription = this.loadingObservation
       .subscribe(
         {
@@ -64,11 +64,11 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.loading = false;
           }
         }
-      );
+      );*/
   }
 
   ngOnDestroy() {
-    this.loadingSubscription?.unsubscribe();
+    //this.loadingSubscription?.unsubscribe();
   }
 
 }

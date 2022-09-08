@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "week-04": {
+    "agrizi": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/week-04",
+            "outputPath": "dist/agrizi",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "week-04:build:production"
+              "browserTarget": "agrizi:build:production"
             },
             "development": {
-              "browserTarget": "week-04:build:development"
+              "browserTarget": "agrizi:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "week-04:build"
+            "browserTarget": "agrizi:build"
           }
         },
         "test": {
@@ -109,5 +109,5 @@
       }
     }
   },
-  "defaultProject": "week-04"
+  "defaultProject": "agrizi"
 }

@@ -8,14 +8,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/main/main.module').then(m => m.MainModule)
   },
   {
-    path: 'gallery',
-    loadChildren: () => import('./pages/gallery/gallery.module').then(m => m.GalleryModule)
-  },
-  {
-    path: 'contact',
-    loadChildren: () => import('./pages/contact/contact.module').then(m => m.ContactModule)
-  },
-  {
     path: 'not-found',
     loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule)
   },
@@ -24,8 +16,14 @@ const routes: Routes = [
     redirectTo: '/main',
     pathMatch: 'full'
   },
-  { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
-  { path: 'signup', loadChildren: () => import('./pages/signup/signup.module').then(m => m.SignupModule) },
+  { 
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
+  },
+  {
+    path: 'reg',
+    loadChildren: () => import('./pages/reg/reg.module').then(m => m.RegModule)
+  },
   {
     path: '**',
     redirectTo: '/not-found'
