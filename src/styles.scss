@@ -3,28 +3,38 @@
 @import '~@angular/material/theming';
 @include mat-core();
 
-$primary: mat-palette($mat-teal, 600);
-$accent: mat-palette($mat-teal, 600);
+$primary: mat-palette($mat-teal, 300);
+$accent: mat-palette($mat-cyan, 700);
 
-$theme: mat-dark-theme($primary, $accent);
+$theme: mat-light-theme($primary, $accent);
 
-$my-background: rgb(19, 196, 149);
+/*$my-background: rgb(19, 196, 149);
 
 $background: map-get($theme, background);
 $background: map_merge($background, (background: $my-background));
-$theme: map_merge($theme, (background: $background));
-
+$theme: map_merge($theme, (background: $background));*/
 
 @include angular-material-theme($theme);
 
-html,
-body {
+html, body {
     height: 100%;
 }
 
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.main_component {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+    
+    background-color: #14804d;
+    background-image: linear-gradient(#00FBFB, #14804d);
+    background-attachment: fixed;
 }
 
 .loading-indicator {
