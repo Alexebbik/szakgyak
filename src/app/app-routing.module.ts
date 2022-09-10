@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-// lazy-loading
 const routes: Routes = [
   {
     path: 'main',

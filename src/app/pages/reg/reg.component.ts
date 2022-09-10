@@ -1,4 +1,3 @@
-//import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
@@ -18,7 +17,7 @@ export class RegComponent implements OnInit {
     rank: new FormControl('')
   });
 
-  constructor(/*private location: Location*/) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
@@ -26,9 +25,5 @@ export class RegComponent implements OnInit {
   onSubmit() {
     console.log(this.regForm.value);
   }
-
-  /*goBack() {
-    this.location.back();
-  }*/
 
 }

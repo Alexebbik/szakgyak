@@ -8,12 +8,6 @@ $accent: mat-palette($mat-cyan, 700);
 
 $theme: mat-light-theme($primary, $accent);
 
-/*$my-background: rgb(19, 196, 149);
-
-$background: map-get($theme, background);
-$background: map_merge($background, (background: $my-background));
-$theme: map_merge($theme, (background: $background));*/
-
 @include angular-material-theme($theme);
 
 html, body {

@@ -1,31 +1,17 @@
-import { Component, OnInit, AfterViewInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
-export class MenuComponent implements OnInit, AfterViewInit {
+export class MenuComponent implements OnInit {
 
-  @Input() currentPage: string = '';
-  @Output() selectedPage: EventEmitter<string> = new EventEmitter();
   @Output() onCloseSidenav: EventEmitter<boolean> = new EventEmitter();
 
-  constructor() {
-    console.log('constructor called.');
-  }
+  constructor() {}
 
-  ngOnInit(): void {
-    console.log('ngOnInit called.');
-  }
-
-  ngAfterViewInit(): void {
-    console.log('ngAfterViewInit called.');
-  }
-
-  menuSwitch() {
-    this.selectedPage.emit(this.currentPage);
-  }
+  ngOnInit(): void {}
 
   close() {
     this.onCloseSidenav.emit(true);
