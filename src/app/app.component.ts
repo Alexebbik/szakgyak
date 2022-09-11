@@ -8,6 +8,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class AppComponent implements OnInit {
 
+  menu = '';
+
   constructor() {}
 
   ngOnInit() {}
