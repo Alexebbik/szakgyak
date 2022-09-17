@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { PopupComponent } from '../popup/popup.component';
 
 @Component({
   selector: 'app-profile',
@@ -17,13 +19,17 @@ export class ProfileComponent implements OnInit {
     rank: new FormControl('')
   });
 
-  constructor() { }
+  constructor(public popup: MatDialog) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
     console.log(this.regForm.value);
+  }
+
+  showPopup() {
+    this.popup.open(PopupComponent);
   }
 
 }
