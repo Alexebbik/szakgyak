@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdServiceComponent implements OnInit {
 
+  new_service = false;
+
   constructor() { }
 
   ngOnInit(): void {

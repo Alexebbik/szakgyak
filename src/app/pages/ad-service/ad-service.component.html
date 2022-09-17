@@ -1,3 +1,12 @@
 <div class="main_component">
-    <p>ad-service works!</p>
+    <span>
+        <button (click)="new_service=false">Your Services</button>
+        <button (click)="new_service=true">New Service</button>
+    </span>
+    <div *ngIf="new_service" class="inner-html">
+        <app-new-service></app-new-service>
+    </div>
+    <div *ngIf="new_service===false"  class="inner-html">
+        <app-your-services></app-your-services>
+    </div>
 </div>
