@@ -10,11 +10,17 @@
         </button>
       </div>
       <a routerLink="/main"><div>AGRIZI</div></a>
-      <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+      <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs class="list">
         <ul fxLayout fxLayoutGap="10px" class="navigation-items">
-          <li><a routerLink="/search-service">Search Service</a></li>
-          <li><a routerLink="/ad-service">Ad Service</a></li>
-          <li><a routerLink="/main">Main</a></li>
+          <li><a routerLink="/search-service">
+            <mat-icon>search_icon</mat-icon>
+            Search Service</a></li>
+          <li><a routerLink="/ad-service">
+            <mat-icon>line_style_icon</mat-icon>
+            Ad Service</a></li>
+          <li><a routerLink="/main">
+            <mat-icon>grid_view</mat-icon>
+            Main</a></li>
           <li><a [matMenuTriggerFor]="menu" class="settings"><mat-icon>settings</mat-icon></a></li>
         </ul>
       </div>
