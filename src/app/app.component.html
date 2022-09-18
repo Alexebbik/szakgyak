@@ -9,32 +9,34 @@
           <mat-icon>menu</mat-icon>
         </button>
       </div>
-      <a routerLink="/main"><div>AGRIZI</div></a>
+      <div class="title" routerLink="/main">AGRIZI</div>
       <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs class="list">
         <ul fxLayout fxLayoutGap="10px" class="navigation-items">
-          <li><a routerLink="/search-service">
-            <mat-icon>search_icon</mat-icon>
-            Search Service</a></li>
-          <li><a routerLink="/ad-service">
-            <mat-icon>line_style_icon</mat-icon>
-            Ad Service</a></li>
-          <li><a routerLink="/main">
-            <mat-icon>grid_view</mat-icon>
-            Main</a></li>
-          <li><a [matMenuTriggerFor]="menu" class="settings"><mat-icon>settings</mat-icon></a></li>
+          <li routerLink="/search-service">
+            <span><mat-icon>search_icon</mat-icon>Search Service</span>
+          </li>
+          <li routerLink="/ad-service">
+            <span><mat-icon>line_style_icon</mat-icon>Ad Service</span>
+          </li>
+          <li routerLink="/main">
+            <span><mat-icon>grid_view</mat-icon>Main</span>
+          </li>
+          <li [matMenuTriggerFor]="menu">
+            <span><mat-icon>settings</mat-icon></span>
+          </li>
         </ul>
       </div>
     </mat-toolbar>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="/login">
+    <mat-menu #menu="matMenu" class="mat-menu">
+      <button mat-menu-item routerLink="/login" class="mat-menu-button">
         <mat-icon>login</mat-icon>
         <span>Login</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item routerLink="/#" class="mat-menu-button">
         <mat-icon>logout</mat-icon>
         <span>Logout</span>
       </button>
-      <button mat-menu-item routerLink="/profile">
+      <button mat-menu-item routerLink="/profile" class="mat-menu-button">
         <mat-icon>account_circle</mat-icon>
         <span>My Profile</span>
       </button>

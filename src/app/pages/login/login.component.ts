@@ -10,6 +10,8 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class LoginComponent implements OnInit {
 
+  hide = true;
+
   email = new FormControl('');
   password = new FormControl('');
 

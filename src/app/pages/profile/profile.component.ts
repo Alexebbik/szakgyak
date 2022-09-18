@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from '../popup/popup.component';
 
@@ -14,14 +14,21 @@ export class ProfileComponent implements OnInit {
     name: new FormControl(''),
     password: new FormControl(''),
     rePassword: new FormControl(''),
-    email: new FormControl(''),
+    email: new FormControl('', [Validators.email]),
     tel: new FormControl(''),
     rank: new FormControl('')
   });
 
+  hide1 = true;
+  hide2 = true;
+
   constructor(public popup: MatDialog) { }
 
   ngOnInit(): void {
+  }
+  
+  getErrorMessage() {
+    return this.regForm.get("email")?.hasError("email") ? "Not a valid email." : "";
   }
 
   onSubmit() {

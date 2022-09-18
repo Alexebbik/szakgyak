@@ -1,32 +1,39 @@
 <div class="main_component">
     <div class="div-flex">
-        <h1>Register an account!</h1>
+        <h1>My profile</h1>
         <form [formGroup]="regForm" (ngSubmit)="onSubmit()">
-            <mat-form-field>
+            <mat-form-field color="accent">
                 <mat-label for="name">Name: </mat-label>
                 <input matInput type="text" formControlName="name" />
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field color="accent">
                 <mat-label for="password">Password: </mat-label>
-                <input matInput type="password" formControlName="password" />
+                <input matInput [type]="hide1 ? 'password' : 'text'" formControlName="password" />
+                <button mat-icon-button matSuffix (click)="hide1 = !hide1">
+                    <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field color="accent">
                 <mat-label for="rePassword">Confirm password: </mat-label>
-                <input matInput type="password" formControlName="rePassword" />
+                <input matInput [type]="hide2 ? 'password' : 'text'" formControlName="rePassword" />
+                <button mat-icon-button matSuffix (click)="hide2 = !hide2">
+                    <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field color="accent">
                 <mat-label for="email">Email: </mat-label>
-                <input matInput type="text" formControlName="email" />
+                <input matInput type="email" formControlName="email"/>
+                <mat-error *ngIf="regForm.get('email')?.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field color="accent">
                 <mat-label for="tel">Telephone: </mat-label>
                 <input matInput type="tel" formControlName="tel" />
             </mat-form-field>
             <div class="rank">
-                Choose your rank:
-                <mat-radio-group aria-label="Choose your rank">
-                    <mat-radio-button value="1">Noob</mat-radio-button>
-                    <mat-radio-button value="2">Pro +</mat-radio-button>
+                Rank:
+                <mat-radio-group aria-label="Rank">
+                    <mat-radio-button color="accent" value="1">Noob</mat-radio-button>
+                    <mat-radio-button color="accent" value="2">Pro +</mat-radio-button>
                 </mat-radio-group>
             </div>
             <div>

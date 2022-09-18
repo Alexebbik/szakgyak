@@ -1,7 +1,7 @@
 <div class="main_component">
     <span>
-        <button (click)="new_service=false">Your Services</button>
-        <button (click)="new_service=true">New Service</button>
+        <button mat-raised-button color="primary" (click)="new_service=false">Your Services</button>
+        <button mat-raised-button color="primary" (click)="new_service=true">New Service</button>
     </span>
     <div *ngIf="new_service" class="inner-html">
         <app-new-service></app-new-service>
