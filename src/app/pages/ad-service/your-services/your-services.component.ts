@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Basicdatabase } from 'src/app/shared/models/basicdatabase';
+import { Basicdatabase } from 'src/app/shared/models/Basicdatabase';
 
 @Component({
   selector: 'app-your-services',

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Basicdatabase } from 'src/app/shared/models/basicdatabase';
+import { FormControl } from '@angular/forms';
+import { Basicdatabase } from 'src/app/shared/models/Basicdatabase';
 
 @Component({
   selector: 'app-search-service',
@@ -8,7 +9,21 @@ import { Basicdatabase } from 'src/app/shared/models/basicdatabase';
 })
 export class SearchServiceComponent implements OnInit {
 
-  value = 'Clear me';
+  searchText = '';
+  maxPrice = 1000;
+  minValue = 0;
+  maxValue = this.maxPrice;
+
+  services = new FormControl('');
+  timePicker = new FormControl('');
+
+  servicesList = [
+    "spraying",
+    "mowing"
+  ];
+
+  date = Date.now();
+  touchUi = false;
 
   basicdatabase: Basicdatabase []=[
     {id: 1, service: "valami",price: 69,status: "nincs", buttons:"edit, delete", name: "valaki", phone: "nincs", email:"nem is volt"},
@@ -19,6 +34,10 @@ export class SearchServiceComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  search() {
+
   }
 
 }

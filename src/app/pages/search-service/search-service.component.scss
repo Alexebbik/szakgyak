@@ -3,14 +3,37 @@ span {
   justify-content: space-between;
 }
 
-.sf {
-  width: 30%;
-  height: 10vh;
-  margin: 0 20px;
-  background-color: wheat;
+.spanSf {
+  margin-top: -200px;
 }
 
+.divSf1, .divSf2 {
+  width: 30%;
+  margin: 0 20px;
+  background-color: rgb(200, 255, 200); 
+}
+
+.divSf1 {
+  height: auto;
+}
+.divSf2 {
+  height: 30vh;
+}
+
+.label {
+  margin-left: 10px;
+}
+
+mat-form-field {
+  width: 100%;
+}
 
 table {
-    width: 100%;
+  width: 100%;
+  align-items:  center;
+  background-color: rgb(200, 255, 200); 
+}
+
+.mat-header-cell {
+  text-align: center;
 }
