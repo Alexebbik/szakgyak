@@ -1,6 +1,13 @@
 <div class="main_component">
     <span>
-        <div class="sf">Search</div>
+        <mat-form-field class="sf" appearance="fill">
+            <mat-label>Clearable input</mat-label>
+            <input matInput type="text" >
+            <!--[(ngModel)]="value"   ez az elozo sor vegerol van, error es nem tudok vele mit csinalni-->
+            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
         <div class="sf">Filter</div>
     </span>
     <table mat-table [dataSource]="basicdatabase" class="mat-elevation-z8">

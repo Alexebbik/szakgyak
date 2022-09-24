@@ -8,6 +8,8 @@ import { Basicdatabase } from 'src/app/shared/models/basicdatabase';
 })
 export class SearchServiceComponent implements OnInit {
 
+  value = 'Clear me';
+
   basicdatabase: Basicdatabase []=[
     {id: 1, service: "valami",price: 69,status: "nincs", buttons:"edit, delete", name: "valaki", phone: "nincs", email:"nem is volt"},
     {id: 1, service: "semmi",price: 420,status: "van", buttons:"edit, delete", name: "petike", phone: "elhagyta", email:"meg tul kicsi"},
