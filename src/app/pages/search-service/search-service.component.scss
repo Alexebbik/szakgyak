@@ -7,11 +7,10 @@ span {
 	margin-top: -200px;
 }
 
-.divSf1,
-.divSf2 {
+.divSf1, .divSf2 {
 	width: 30%;
 	margin: 0 20px;
-	background-color: rgb(200, 255, 200);
+	background-color: rgb(104, 228, 207);
 }
 
 .divSf1 {
@@ -19,11 +18,15 @@ span {
 }
 
 .divSf2 {
-	height: 30vh;
+	height: 32vh;
 }
 
 .label {
 	margin-left: 10px;
+}
+
+.price {
+	width: 50%;
 }
 
 mat-form-field {
@@ -33,7 +36,7 @@ mat-form-field {
 table {
 	width: 100%;
 	align-items: center;
-	background-color: rgb(200, 255, 200);
+	background-color: rgb(104, 228, 207);
 }
 
 .mat-header-cell {

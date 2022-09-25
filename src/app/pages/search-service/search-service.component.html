@@ -19,19 +19,21 @@
 			</mat-form-field>
 			<span class="label">Price range:</span>
 			<span>
-				<mat-form-field appearance="fill">
+				<mat-form-field appearance="fill" class="price">
 					<mat-label>Min value</mat-label>
 					<input matInput type="number" [(ngModel)]="minValue" min="0" [max]="maxPrice">
 				</mat-form-field>
-				<mat-form-field appearance="fill">
+				<mat-form-field appearance="fill" class="price">
 					<mat-label>Max value</mat-label>
 					<input matInput type="number" [(ngModel)]="maxValue" min="0" [max]="maxPrice">
 				</mat-form-field>
 			</span>
-			<mat-form-field>
-				<input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" [(ngModel)]="date">
+			<mat-form-field appearance="fill">
+				<mat-label>Choose a date</mat-label>
+				<input matInput [ngxMatDatetimePicker]="picker" [(ngModel)]="date">
 				<mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
 				<ngx-mat-datetime-picker #picker [touchUi]="touchUi"></ngx-mat-datetime-picker>
+				<mat-error>ERROR</mat-error>
 			</mat-form-field>
 		</div>
 	</span>
