@@ -73,8 +73,7 @@
 
 		<tr mat-header-row *matHeaderRowDef='["id", "service", "price", "status", "name", "phone", "email", "buttons"]'>
 		</tr>
-		<tr mat-row
-			*matRowDef='let row; columns: ["id", "service", "price", "status", "name", "phone", "email", "buttons"]'>
+		<tr mat-row *matRowDef='let row; columns: ["id", "service", "price", "status", "name", "phone", "email", "buttons"]'>
 		</tr>
 	</table>
 </div>
