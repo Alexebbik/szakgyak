@@ -12,18 +12,18 @@ import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
-  declarations: [
-    ProfileComponent
-  ],
-  imports: [
-    CommonModule,
-    ProfileRoutingModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatInputModule,
-    MatRadioModule,
-    MatIconModule
-  ]
+	declarations: [
+		ProfileComponent
+	],
+	imports: [
+		CommonModule,
+		ProfileRoutingModule,
+		ReactiveFormsModule,
+		MatFormFieldModule,
+		MatButtonModule,
+		MatInputModule,
+		MatRadioModule,
+		MatIconModule
+	]
 })
 export class ProfileModule { }

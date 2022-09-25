@@ -1,75 +1,78 @@
 <div class="main_component">
-    <span class="spanSf">
-        <div class="divSf1">
-            <mat-form-field appearance="fill">
-                <mat-label>Search</mat-label>
-                <input matInput type="text" [(ngModel)]="searchText">
-                <button matSuffix mat-icon-button aria-label="Clear" (click)="search()">
-                  <mat-icon>search_icon</mat-icon>
-                </button>
-            </mat-form-field>
-        </div>
+	<span class="spanSf">
+		<div class="divSf1">
+			<mat-form-field appearance="fill">
+				<mat-label>Search</mat-label>
+				<input matInput type="text" [(ngModel)]="searchText">
+				<button matSuffix mat-icon-button aria-label="Clear" (click)="search()">
+					<mat-icon>search_icon</mat-icon>
+				</button>
+			</mat-form-field>
+		</div>
 
-        <div class="divSf2">
-            <mat-form-field appearance="fill">
-                <mat-label>Services</mat-label>
-                <mat-select [formControl]="services" multiple>
-                  <mat-option *ngFor="let service of servicesList" [value]="service">{{service}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <span class="label">Price range:</span>
-            <span>
-                <mat-form-field appearance="fill">
-                    <mat-label>Min value</mat-label>
-                    <input matInput type="number" [(ngModel)]="minValue" min="0" [max]="maxPrice">
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                    <mat-label>Max value</mat-label>
-                    <input matInput type="number" [(ngModel)]="maxValue" min="0" [max]="maxPrice">
-                </mat-form-field>
-            </span>
-            <mat-form-field>
-                <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" [(ngModel)]="date">
-                <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
-                <ngx-mat-datetime-picker #picker [touchUi]="touchUi"></ngx-mat-datetime-picker>
-            </mat-form-field>
-        </div>
-    </span>
-    <table mat-table [dataSource]="basicdatabase" class="mat-elevation-z8">
-        <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> ID </th>
-            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-        </ng-container>
-        <ng-container matColumnDef="service">
-            <th mat-header-cell *matHeaderCellDef> Service </th>
-            <td mat-cell *matCellDef="let element"> {{element.service}} </td>
-        </ng-container>
-        <ng-container matColumnDef="price">
-            <th mat-header-cell *matHeaderCellDef> Price </th>
-            <td mat-cell *matCellDef="let element"> {{element.price}} </td>
-        </ng-container>
-        <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef> Status </th>
-            <td mat-cell *matCellDef="let element"> {{element.status}} </td>
-        </ng-container>
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-        <ng-container matColumnDef="phone">
-            <th mat-header-cell *matHeaderCellDef> Phone </th>
-            <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
-        </ng-container>
-        <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef> E-mail </th>
-            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-        </ng-container>
-        <ng-container matColumnDef="buttons">
-            <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let element"> {{element.buttons}} </td>
-        </ng-container>
-    
-        <tr mat-header-row *matHeaderRowDef='["id", "service", "price", "status", "name", "phone", "email", "buttons"]'></tr>
-        <tr mat-row *matRowDef='let row; columns: ["id", "service", "price", "status", "name", "phone", "email", "buttons"]'></tr>
-    </table>
+		<div class="divSf2">
+			<mat-form-field appearance="fill">
+				<mat-label>Services</mat-label>
+				<mat-select [formControl]="services" multiple>
+					<mat-option *ngFor="let service of servicesList" [value]="service">{{service}}</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<span class="label">Price range:</span>
+			<span>
+				<mat-form-field appearance="fill">
+					<mat-label>Min value</mat-label>
+					<input matInput type="number" [(ngModel)]="minValue" min="0" [max]="maxPrice">
+				</mat-form-field>
+				<mat-form-field appearance="fill">
+					<mat-label>Max value</mat-label>
+					<input matInput type="number" [(ngModel)]="maxValue" min="0" [max]="maxPrice">
+				</mat-form-field>
+			</span>
+			<mat-form-field>
+				<input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" [(ngModel)]="date">
+				<mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+				<ngx-mat-datetime-picker #picker [touchUi]="touchUi"></ngx-mat-datetime-picker>
+			</mat-form-field>
+		</div>
+	</span>
+	<table mat-table [dataSource]="basicdatabase" class="mat-elevation-z8">
+		<ng-container matColumnDef="id">
+			<th mat-header-cell *matHeaderCellDef> ID </th>
+			<td mat-cell *matCellDef="let element"> {{element.id}} </td>
+		</ng-container>
+		<ng-container matColumnDef="service">
+			<th mat-header-cell *matHeaderCellDef> Service </th>
+			<td mat-cell *matCellDef="let element"> {{element.service}} </td>
+		</ng-container>
+		<ng-container matColumnDef="price">
+			<th mat-header-cell *matHeaderCellDef> Price </th>
+			<td mat-cell *matCellDef="let element"> {{element.price}} </td>
+		</ng-container>
+		<ng-container matColumnDef="status">
+			<th mat-header-cell *matHeaderCellDef> Status </th>
+			<td mat-cell *matCellDef="let element"> {{element.status}} </td>
+		</ng-container>
+		<ng-container matColumnDef="name">
+			<th mat-header-cell *matHeaderCellDef> Name </th>
+			<td mat-cell *matCellDef="let element"> {{element.name}} </td>
+		</ng-container>
+		<ng-container matColumnDef="phone">
+			<th mat-header-cell *matHeaderCellDef> Phone </th>
+			<td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+		</ng-container>
+		<ng-container matColumnDef="email">
+			<th mat-header-cell *matHeaderCellDef> E-mail </th>
+			<td mat-cell *matCellDef="let element"> {{element.email}} </td>
+		</ng-container>
+		<ng-container matColumnDef="buttons">
+			<th mat-header-cell *matHeaderCellDef></th>
+			<td mat-cell *matCellDef="let element"> {{element.buttons}} </td>
+		</ng-container>
+
+		<tr mat-header-row *matHeaderRowDef='["id", "service", "price", "status", "name", "phone", "email", "buttons"]'>
+		</tr>
+		<tr mat-row
+			*matRowDef='let row; columns: ["id", "service", "price", "status", "name", "phone", "email", "buttons"]'>
+		</tr>
+	</table>
 </div>

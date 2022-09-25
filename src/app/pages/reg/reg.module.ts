@@ -12,18 +12,18 @@ import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
-  declarations: [
-    RegComponent
-  ],
-  imports: [
-    CommonModule,
-    RegRoutingModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatInputModule,
-    MatRadioModule,
-    MatIconModule
-  ]
+	declarations: [
+		RegComponent
+	],
+	imports: [
+		CommonModule,
+		RegRoutingModule,
+		ReactiveFormsModule,
+		MatFormFieldModule,
+		MatButtonModule,
+		MatInputModule,
+		MatRadioModule,
+		MatIconModule
+	]
 })
 export class RegModule { }

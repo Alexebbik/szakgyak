@@ -5,7 +5,7 @@ import { RegComponent } from './reg.component';
 const routes: Routes = [{ path: '', component: RegComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forChild(routes)],
+	exports: [RouterModule]
 })
 export class RegRoutingModule { }

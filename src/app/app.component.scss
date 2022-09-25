@@ -1,57 +1,60 @@
 .navigation-items {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+	list-style: none;
+	padding: 0;
+	margin: 0;
 }
 
 mat-toolbar {
-    border-bottom: 0.5vh solid white;
+	border-bottom: 0.5vh solid white;
 }
 
 mat-sidenav {
-    width: 250px;
-    background-color: rgb(11, 182, 153);
+	width: 250px;
+	background-color: rgb(11, 182, 153);
 }
 
 .list {
-    height: 75%;
+	height: 75%;
 }
 
 li {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
 
-    background-color: transparent;
+	background-color: transparent;
 
-    padding: 0 10px;
-}
-li:not(:last-child) {   
-    background-color: rgb(19, 143, 122);
-    border-radius: 4px;
+	padding: 0 10px;
 }
 
-li:hover, .title:hover {
-    color: rgb(211, 211, 211);
-    cursor: pointer;
+li:not(:last-child) {
+	background-color: rgb(19, 143, 122);
+	border-radius: 4px;
 }
+
+li:hover,
+.title:hover {
+	color: rgb(211, 211, 211);
+	cursor: pointer;
+}
+
 li:not(:last-child):hover {
-    background-color: rgb(19, 156, 133);
+	background-color: rgb(19, 156, 133);
 }
 
 li mat-icon {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
 
-    margin-right: 5px;
+	margin-right: 5px;
 }
 
 ::ng-deep .mat-menu {
-    background-color: rgb(157, 246, 231);
+	background-color: rgb(157, 246, 231);
 }
 
 ::ng-deep .mat-menu-button:hover {
-    background-color: rgb(119, 205, 191);
+	background-color: rgb(119, 205, 191);
 }

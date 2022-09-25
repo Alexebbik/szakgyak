@@ -3,21 +3,21 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SearchServiceComponent } from './search-service.component';
 
 describe('SearchServiceComponent', () => {
-  let component: SearchServiceComponent;
-  let fixture: ComponentFixture<SearchServiceComponent>;
+	let component: SearchServiceComponent;
+	let fixture: ComponentFixture<SearchServiceComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ SearchServiceComponent ]
-    })
-    .compileComponents();
+	beforeEach(async () => {
+		await TestBed.configureTestingModule({
+			declarations: [SearchServiceComponent]
+		})
+			.compileComponents();
 
-    fixture = TestBed.createComponent(SearchServiceComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+		fixture = TestBed.createComponent(SearchServiceComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it('should create', () => {
+		expect(component).toBeTruthy();
+	});
 });

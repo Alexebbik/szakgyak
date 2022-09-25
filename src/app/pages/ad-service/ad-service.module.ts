@@ -15,21 +15,21 @@ import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
-  declarations: [
-    AdServiceComponent,
-    NewServiceComponent,
-    YourServicesComponent
-  ],
-  imports: [
-    CommonModule,
-    AdServiceRoutingModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatInputModule,
-    MatSelectModule,
-    MatTableModule
+	declarations: [
+		AdServiceComponent,
+		NewServiceComponent,
+		YourServicesComponent
+	],
+	imports: [
+		CommonModule,
+		AdServiceRoutingModule,
+		ReactiveFormsModule,
+		MatFormFieldModule,
+		MatButtonModule,
+		MatInputModule,
+		MatSelectModule,
+		MatTableModule
 
-  ]
+	]
 })
 export class AdServiceModule { }

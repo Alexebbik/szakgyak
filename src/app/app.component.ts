@@ -2,22 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+	selector: 'app-root',
+	templateUrl: './app.component.html',
+	styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
 
-  constructor() {}
+	constructor() { }
 
-  ngOnInit() {}
+	ngOnInit() { }
 
-  onToggleSidenav(sidenav: MatSidenav) {
-    sidenav.toggle();
-  }
+	onToggleSidenav(sidenav: MatSidenav) {
+		sidenav.toggle();
+	}
 
-  onClose(event: any, sidenav: MatSidenav) {
-    if (event === true)
-      sidenav.close();
-  }
+	onClose(event: any, sidenav: MatSidenav) {
+		if (event === true)
+			sidenav.close();
+	}
 }

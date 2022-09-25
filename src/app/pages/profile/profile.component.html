@@ -1,46 +1,46 @@
 <div class="main_component">
-    <div class="div-flex">
-        <h1>My profile</h1>
-        <form [formGroup]="regForm" (ngSubmit)="onSubmit()">
-            <mat-form-field color="accent">
-                <mat-label for="name">Name: </mat-label>
-                <input matInput type="text" formControlName="name" />
-            </mat-form-field>
-            <mat-form-field color="accent">
-                <mat-label for="password">Password: </mat-label>
-                <input matInput [type]="hide1 ? 'password' : 'text'" formControlName="password" />
-                <button mat-icon-button matSuffix (click)="hide1 = !hide1">
-                    <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-            </mat-form-field>
-            <mat-form-field color="accent">
-                <mat-label for="rePassword">Confirm password: </mat-label>
-                <input matInput [type]="hide2 ? 'password' : 'text'" formControlName="rePassword" />
-                <button mat-icon-button matSuffix (click)="hide2 = !hide2">
-                    <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-            </mat-form-field>
-            <mat-form-field color="accent">
-                <mat-label for="email">Email: </mat-label>
-                <input matInput type="email" formControlName="email"/>
-                <mat-error *ngIf="regForm.get('email')?.invalid">{{getErrorMessage()}}</mat-error>
-            </mat-form-field>
-            <mat-form-field color="accent">
-                <mat-label for="tel">Telephone: </mat-label>
-                <input matInput type="tel" formControlName="tel" />
-            </mat-form-field>
-            <div class="rank">
-                Rank:
-                <mat-radio-group aria-label="Rank">
-                    <mat-radio-button color="accent" value="1">Noob</mat-radio-button>
-                    <mat-radio-button color="accent" value="2">Pro +</mat-radio-button>
-                </mat-radio-group>
-            </div>
-            <div>
-                <span class="buttons">
-                    <button mat-raised-button color="primary" type="submit" (click)="showPopup()">Save</button>
-                </span>
-            </div>
-        </form>
-    </div>
+	<div class="div-flex">
+		<h1>My profile</h1>
+		<form [formGroup]="regForm" (ngSubmit)="onSubmit()">
+			<mat-form-field color="accent">
+				<mat-label for="name">Name: </mat-label>
+				<input matInput type="text" formControlName="name" />
+			</mat-form-field>
+			<mat-form-field color="accent">
+				<mat-label for="password">Password: </mat-label>
+				<input matInput [type]="hide1 ? 'password' : 'text'" formControlName="password" />
+				<button mat-icon-button matSuffix (click)="hide1 = !hide1">
+					<mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+				</button>
+			</mat-form-field>
+			<mat-form-field color="accent">
+				<mat-label for="rePassword">Confirm password: </mat-label>
+				<input matInput [type]="hide2 ? 'password' : 'text'" formControlName="rePassword" />
+				<button mat-icon-button matSuffix (click)="hide2 = !hide2">
+					<mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+				</button>
+			</mat-form-field>
+			<mat-form-field color="accent">
+				<mat-label for="email">Email: </mat-label>
+				<input matInput type="email" formControlName="email" />
+				<mat-error *ngIf="regForm.get('email')?.invalid">{{getErrorMessage()}}</mat-error>
+			</mat-form-field>
+			<mat-form-field color="accent">
+				<mat-label for="tel">Telephone: </mat-label>
+				<input matInput type="tel" formControlName="tel" />
+			</mat-form-field>
+			<div class="rank">
+				Rank:
+				<mat-radio-group aria-label="Rank">
+					<mat-radio-button color="accent" value="1">Noob</mat-radio-button>
+					<mat-radio-button color="accent" value="2">Pro +</mat-radio-button>
+				</mat-radio-group>
+			</div>
+			<div>
+				<span class="buttons">
+					<button mat-raised-button color="primary" type="submit" (click)="showPopup()">Save</button>
+				</span>
+			</div>
+		</form>
+	</div>
 </div>

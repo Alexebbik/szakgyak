@@ -19,28 +19,28 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { PopupComponent } from './pages/popup/popup.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MenuComponent,
-    PopupComponent
-  ],
-  entryComponents: [PopupComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    FlexLayoutModule,
-    MatListModule,
-    MatMenuModule,
-    MatDialogModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		MenuComponent,
+		PopupComponent
+	],
+	entryComponents: [PopupComponent],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		FormsModule,
+		HttpClientModule,
+		BrowserAnimationsModule,
+		MatSidenavModule,
+		MatToolbarModule,
+		MatButtonModule,
+		MatIconModule,
+		FlexLayoutModule,
+		MatListModule,
+		MatMenuModule,
+		MatDialogModule
+	],
+	providers: [],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

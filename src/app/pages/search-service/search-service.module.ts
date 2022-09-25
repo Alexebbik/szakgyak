@@ -16,25 +16,25 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 
 @NgModule({
-  declarations: [
-    SearchServiceComponent
-  ],
-  imports: [
-    CommonModule,
-    SearchServiceRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatInputModule,
-    MatSelectModule,
-    MatTableModule,
-    MatIconModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    NgxMatDatetimePickerModule,
-    NgxMatTimepickerModule,
-    NgxMatNativeDateModule
-  ]
+	declarations: [
+		SearchServiceComponent
+	],
+	imports: [
+		CommonModule,
+		SearchServiceRoutingModule,
+		FormsModule,
+		ReactiveFormsModule,
+		MatFormFieldModule,
+		MatButtonModule,
+		MatInputModule,
+		MatSelectModule,
+		MatTableModule,
+		MatIconModule,
+		MatDatepickerModule,
+		MatNativeDateModule,
+		NgxMatDatetimePickerModule,
+		NgxMatTimepickerModule,
+		NgxMatNativeDateModule
+	]
 })
 export class SearchServiceModule { }

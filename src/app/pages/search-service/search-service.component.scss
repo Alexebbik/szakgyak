@@ -1,39 +1,41 @@
 span {
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 .spanSf {
-  margin-top: -200px;
+	margin-top: -200px;
 }
 
-.divSf1, .divSf2 {
-  width: 30%;
-  margin: 0 20px;
-  background-color: rgb(200, 255, 200); 
+.divSf1,
+.divSf2 {
+	width: 30%;
+	margin: 0 20px;
+	background-color: rgb(200, 255, 200);
 }
 
 .divSf1 {
-  height: auto;
+	height: auto;
 }
+
 .divSf2 {
-  height: 30vh;
+	height: 30vh;
 }
 
 .label {
-  margin-left: 10px;
+	margin-left: 10px;
 }
 
 mat-form-field {
-  width: 100%;
+	width: 100%;
 }
 
 table {
-  width: 100%;
-  align-items:  center;
-  background-color: rgb(200, 255, 200); 
+	width: 100%;
+	align-items: center;
+	background-color: rgb(200, 255, 200);
 }
 
 .mat-header-cell {
-  text-align: center;
+	text-align: center;
 }

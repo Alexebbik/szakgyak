@@ -1,32 +1,32 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+	selector: 'app-login',
+	templateUrl: './login.component.html',
+	styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
-  hide = true;
+	hide = true;
 
-  email = new FormControl('');
-  password = new FormControl('');
+	email = new FormControl('');
+	password = new FormControl('');
 
-  loadingSubscription?: Subscription;
-  loadingObservation?: Observable<boolean>;
+	loadingSubscription?: Subscription;
+	loadingObservation?: Observable<boolean>;
 
-  loading: boolean = false;
+	loading: boolean = false;
 
-  constructor(private router: Router) { }
+	constructor(private router: Router) { }
 
-  ngOnInit(): void {
-  }
+	ngOnInit(): void {
+	}
 
-  async login() {
-    this.loading = true;
-  }
+	async login() {
+		this.loading = true;
+	}
 
 }

@@ -6,12 +6,12 @@ import { MainComponent } from './main.component';
 
 
 @NgModule({
-  declarations: [
-    MainComponent
-  ],
-  imports: [
-    CommonModule,
-    MainRoutingModule
-  ]
+	declarations: [
+		MainComponent
+	],
+	imports: [
+		CommonModule,
+		MainRoutingModule
+	]
 })
 export class MainModule { }
