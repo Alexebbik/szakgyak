@@ -1,8 +1,8 @@
-package com.jusoft.smittek.agrizi.users.controller;
+package com.jusoft.smittek.agrizi.controller;
 
-import com.jusoft.smittek.agrizi.users.exception.UserNotFound;
-import com.jusoft.smittek.agrizi.users.model.User;
-import com.jusoft.smittek.agrizi.users.repository.UserRepository;
+import com.jusoft.smittek.agrizi.exception.UserNotFound;
+import com.jusoft.smittek.agrizi.model.User;
+import com.jusoft.smittek.agrizi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

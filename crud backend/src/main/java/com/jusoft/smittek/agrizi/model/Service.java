@@ -1,4 +1,4 @@
-package com.jusoft.smittek.agrizi.services.model;
+package com.jusoft.smittek.agrizi.model;
 
 import javax.persistence.*;
 

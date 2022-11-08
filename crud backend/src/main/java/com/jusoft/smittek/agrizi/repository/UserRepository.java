@@ -1,6 +1,6 @@
-package com.jusoft.smittek.agrizi.users.repository;
+package com.jusoft.smittek.agrizi.repository;
 
-import com.jusoft.smittek.agrizi.users.model.User;
+import com.jusoft.smittek.agrizi.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

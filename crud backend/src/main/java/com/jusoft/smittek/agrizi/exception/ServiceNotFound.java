@@ -1,4 +1,4 @@
-package com.jusoft.smittek.agrizi.services.exception;
+package com.jusoft.smittek.agrizi.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

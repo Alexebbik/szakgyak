@@ -1,8 +1,8 @@
-package com.jusoft.smittek.agrizi.services.controller;
+package com.jusoft.smittek.agrizi.controller;
 
-import com.jusoft.smittek.agrizi.services.exception.ServiceNotFound;
-import com.jusoft.smittek.agrizi.services.model.Service;
-import com.jusoft.smittek.agrizi.services.repository.ServiceRepository;
+import com.jusoft.smittek.agrizi.exception.ServiceNotFound;
+import com.jusoft.smittek.agrizi.model.Service;
+import com.jusoft.smittek.agrizi.repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
