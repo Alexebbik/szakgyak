@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 @RestController
 @RequestMapping("")
 public class UserController {
@@ -25,7 +26,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public User createUser(@Validated @RequestBody User user) {
+    public User createUser(@RequestBody User user) {
         return userRepository.save(user);
     }
 

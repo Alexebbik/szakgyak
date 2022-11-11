@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 @RestController
 @RequestMapping("")
 public class ServiceController {
@@ -25,7 +26,7 @@ public class ServiceController {
     }
 
     @PostMapping("/services")
-    public Service createService(@Validated @RequestBody Service service) {
+    public Service createService(@RequestBody Service service) {
         return serviceRepository.save(service);
     }
 
