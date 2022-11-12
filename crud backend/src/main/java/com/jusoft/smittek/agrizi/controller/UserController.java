@@ -5,7 +5,6 @@ import com.jusoft.smittek.agrizi.model.User;
 import com.jusoft.smittek.agrizi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -14,6 +13,7 @@ import java.util.Map;
 
 
 @RestController
+@CrossOrigin( origins = "http://localhost:4200")
 @RequestMapping("")
 public class UserController {
 

@@ -3,5 +3,5 @@ export interface User {
 	password: string;
 	email: string;
 	tel: string;
-	rank: string;
+	rank: boolean;
 }
