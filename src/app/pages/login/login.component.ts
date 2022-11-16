@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable, Subscription, throwError} from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { User } from '../../shared/models/User';
 
 @Component({
@@ -13,14 +11,10 @@ import { User } from '../../shared/models/User';
 })
 export class LoginComponent implements OnInit {
 
-
 	hide = true;
 
 	email = new FormControl('');
 	password = new FormControl('');
-
-	loadingSubscription?: Subscription;
-	loadingObservation?: Observable<boolean>;
 
 	loading: boolean = false;
 
@@ -35,14 +29,14 @@ export class LoginComponent implements OnInit {
 			error: error => {
 				console.error('There was an error!', error.message);
 			}
-		})*/
+		})
 
 
 		let user = {
 			name: "dzidza",
 			password: "123",
 			email: "nincs",
-			tel: "666",
+			telephone: "666",
 			rank: true
 		};
 		this.http.post<User>("http://localhost:8080/users", user).subscribe({
@@ -52,22 +46,22 @@ export class LoginComponent implements OnInit {
 		})
 
 	
-		/*let user = {
+		let user = {
 			name: "gugya",
 			password: "123",
 			email: "nincs",
-			tel: "666",
+			telephone: "666",
 			rank: true
 		};
-		this.http.put<User>("http://localhost:8080/users/1", user).subscribe({
+		this.http.put<User>("http://localhost:8080/users/17", user).subscribe({
 			next: data => console.log(data.name)
 			,
 			error: error => {
 				console.error('There was an error!', error.message);
 			}
-		})*/
+		})
 
-		/*this.http.delete<Array<User>>("http://localhost:8080/users/1").subscribe({
+		this.http.delete<Array<User>>("http://localhost:8080/users/1").subscribe({
 			next: _ => {
 				console.log("Delete successful");
 			},
@@ -75,13 +69,27 @@ export class LoginComponent implements OnInit {
 				console.error('There was an error!', error.message);
 			}
 		})*/
-
-			
-		
 	}
 
 	async login() {
 		this.loading = true;
+
+		this.http.get<Array<User>>("http://localhost:8080/users").subscribe({
+			next: data => {
+				for (let i = 0; i < data.length; i++)
+					if (data[i].email === this.email.value)
+						if (data[i].password === this.password.value) {
+							console.log("Login success as " + data[i].name + "!");
+							break;
+						}
+
+				this.loading = false;
+			},
+			error: error =>	{
+				console.error('There was an error!', error.message);
+				this.loading = false;
+			}
+		})
 	}
 
 }

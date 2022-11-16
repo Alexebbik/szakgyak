@@ -29,15 +29,15 @@
 				<mat-error>{{getErrorMessage("email")}}</mat-error>
 			</mat-form-field>
 			<mat-form-field color="accent">
-				<mat-label for="tel">Telephone: </mat-label>
-				<input matInput type="tel" formControlName="tel" required />
-				<mat-error>{{getErrorMessage("tel")}}</mat-error>
+				<mat-label for="telephone">Telephone: </mat-label>
+				<input matInput type="tel" formControlName="telephone" required />
+				<mat-error>{{getErrorMessage("telephone")}}</mat-error>
 			</mat-form-field>
 			<div class="rank">
 				Choose your rank:
-				<mat-radio-group aria-label="Choose your rank">
-					<mat-radio-button color="accent" value="1" checked>Noob</mat-radio-button>
-					<mat-radio-button color="accent" value="2">Pro +</mat-radio-button>
+				<mat-radio-group aria-label="Choose your rank" [(ngModel)]="rank" [ngModelOptions]="{standalone: true}">
+					<mat-radio-button color="accent" value="false" name="rank" checked>Noob</mat-radio-button>
+					<mat-radio-button color="accent" value="true" name="rank">Pro +</mat-radio-button>
 				</mat-radio-group>
 			</div>
 			<div>
