@@ -8,6 +8,8 @@ public class Service {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name = "userid")
+    private long userid;
     @Column(name = "name")
     private String name;
     @Column(name = "email")
@@ -16,6 +18,8 @@ public class Service {
     private String telephone;
     @Column(name = "type")
     private int type;
+    @Column(name = "status")
+    private boolean status;
     @Column(name = "price")
     private int price;
     @Column(name = "time")
@@ -25,12 +29,14 @@ public class Service {
         super();
     }
 
-    public Service(long id, String name, String email, String telephone, int type, int price, String time) {
+    public Service(long id, long userid, String name, String email, String telephone, int type, boolean status, int price, String time) {
         this.id = id;
+        this.userid = userid;
         this.name = name;
         this.email = email;
         this.telephone = telephone;
         this.type = type;
+        this.status = status;
         this.price = price;
         this.time = time;
     }
@@ -42,6 +48,14 @@ public class Service {
     public void setId(long id) {
         this.id = id;
     }
+
+    public long getUserid() {
+    return userid;
+  }
+
+    public void setUserid(long userid) {
+    this.userid = userid;
+  }
 
     public String getName() {
         return name;
@@ -73,6 +87,14 @@ public class Service {
 
     public void setType(int type) {
         this.type = type;
+    }
+
+    public boolean isStatus() {
+    return status;
+  }
+
+    public void setStatus(boolean status) {
+      this.status = status;
     }
 
     public int getPrice() {

@@ -39,10 +39,12 @@ public class ServiceController {
     @PutMapping("/services/{id}")
     public ResponseEntity<Service> updateService(@PathVariable(value = "id") long serviceId, @RequestBody Service serviceDetails) throws ServiceNotFound {
         Service service = serviceRepository.findById(serviceId).orElseThrow(() -> new ServiceNotFound("Service not found for this id : " + serviceId));
+        service.setUserid(serviceDetails.getUserid());
         service.setName(serviceDetails.getName());
         service.setEmail(serviceDetails.getEmail());
         service.setTelephone(serviceDetails.getTelephone());
         service.setType(serviceDetails.getType());
+        service.setStatus(serviceDetails.isStatus());
         service.setPrice(serviceDetails.getPrice());
         service.setTime(serviceDetails.getTime());
         serviceRepository.save(service);

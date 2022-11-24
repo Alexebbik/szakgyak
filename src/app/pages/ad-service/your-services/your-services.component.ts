@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Basicdatabase } from 'src/app/shared/models/Basicdatabase';
+import { Service } from 'src/app/shared/models/Service';
 
 @Component({
 	selector: 'app-your-services',
@@ -8,16 +9,34 @@ import { Basicdatabase } from 'src/app/shared/models/Basicdatabase';
 })
 export class YourServicesComponent implements OnInit {
 
-	basicdatabase: Basicdatabase[] = [
-		{ id: 1, service: "valami", price: 69, status: "nincs", buttons: "edit, delete", name: "", phone: "", email: "" },
-		{ id: 1, service: "semmi", price: 420, status: "van", buttons: "edit, delete", name: "", phone: "", email: "" },
-		{ id: 1, service: "lehet", price: 666, status: "talán", buttons: "edit, delete", name: "", phone: "", email: "" },
-
+	basicdatabase = [
+		{
+			name: "asd",
+			email: "asd",
+			telephone: "asd",
+			type: 1,
+			status: false,
+			price: 69,
+			time: "sfeaefa",
+		}
 	];
 
-	constructor() { }
+	yourServices: Service[] = [];
+
+	constructor(private http: HttpClient) { }
 
 	ngOnInit(): void {
+		this.http.get<Array<Service>>("http://localhost:8080/services").subscribe({
+			next: data => {
+				for (let i = 0; i < data.length; i++)
+				{
+					this.yourServices.push(data[i]);
+				};
+			},
+			error: error => console.error('There was an error!', error.message)
+		})
+
+		console.log(this.yourServices);
 	}
 
 }

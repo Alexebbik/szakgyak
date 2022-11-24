@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { PopupComponent } from '../popup/popup.component';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../shared/models/User';
+import { AppComponent } from 'src/app/app.component';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-profile',
@@ -25,24 +25,19 @@ export class ProfileComponent implements OnInit {
 	hide1 = true;
 	hide2 = true;
 
-	constructor(public popup: MatDialog, private http: HttpClient) { }
+	constructor(private router: Router, private http: HttpClient) { }
 
 	ngOnInit(): void {
-		this.http.get<User>("http://localhost:8080/users/18").subscribe({
-			next: data => {
-				this.regForm.setValue({
-					name: data.name,
-					password: data.password,
-					rePassword: data.password,
-					email: data.email,
-					telephone: data.telephone
-				});
-				this.rank = String(data.rank);
-			},
-			error: error => {
-				console.error('There was an error!', error.message);
-			}
-		})
+		if (AppComponent.loggedInUser != null) {
+			this.regForm.setValue({
+				name: AppComponent.loggedInUser?.name,
+				password: AppComponent.loggedInUser?.password,
+				rePassword: AppComponent.loggedInUser?.password,
+				email: AppComponent.loggedInUser?.email,
+				telephone: AppComponent.loggedInUser?.telephone
+			});
+			this.rank = String(AppComponent.loggedInUser?.rank);
+		}
 	}
 
 	getErrorMessage(type: string) {
@@ -65,7 +60,7 @@ export class ProfileComponent implements OnInit {
 			next: data => {
 				for (let i = 0; i < data.length; i++)
 				{
-					if (data[i].id === 18)
+					if (data[i].id === AppComponent.loggedInUser?.id)
 						continue;
 
 					if (this.regForm.value.email === data[i].email) {
@@ -85,7 +80,7 @@ export class ProfileComponent implements OnInit {
 			rank: (this.rank === "true" ? true : false)
 		};
 
-		this.http.put<User>("http://localhost:8080/users/18", user).subscribe({
+		this.http.put<User>("http://localhost:8080/users/" + AppComponent.loggedInUser?.id, user).subscribe({
 			next: data => console.log(data.name),
 			error: error => console.error('There was an error!', error.message)
 		})
@@ -93,7 +88,12 @@ export class ProfileComponent implements OnInit {
 
 	onDelete() {
 		if(confirm("Are you sure you want to delete your profile?")) {
-				this.http.delete<User>("http://localhost:8080/users/17").subscribe({
+				this.http.delete<User>("http://localhost:8080/users/" + AppComponent.loggedInUser?.id).subscribe({
+				next: _ => {
+					alert("The user has been deleted successfully.");
+					this.router.navigate(['/login']);
+					localStorage.clear();
+				},
 				error: error => console.error('There was an error!', error.message)
 			})
 		}

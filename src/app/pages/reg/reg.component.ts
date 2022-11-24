@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../shared/models/User';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-reg',
@@ -23,7 +24,7 @@ export class RegComponent implements OnInit {
 	hide1 = true;
 	hide2 = true;
 
-	constructor(private http: HttpClient) { }
+	constructor(private router: Router, private http: HttpClient) { }
 
 	ngOnInit(): void {
 		this.rank = "false";
@@ -43,6 +44,19 @@ export class RegComponent implements OnInit {
 		if (!this.regForm.valid || this.rank === "")
 			return;
 
+		this.http.get<Array<User>>("http://localhost:8080/users").subscribe({
+			next: data => {
+				for (let i = 0; i < data.length; i++)
+				{
+					if (this.regForm.value.email === data[i].email) {
+						alert("This email is already in use.");
+						return;
+					}
+				};
+			},
+			error: error => console.error('There was an error!', error.message)
+		})
+
 		let user = {
 			name: this.regForm.value.name,
 			password: this.regForm.value.password,
@@ -52,7 +66,10 @@ export class RegComponent implements OnInit {
 		};
 
 		this.http.post<User>("http://localhost:8080/users", user).subscribe({
-			next: data => console.log(data.name),
+			next: _ => {
+				alert("Registration successful!");
+				this.router.navigate(['/login']);
+			},
 			error: error => console.error('There was an error!', error.message)
 		})
 	}

@@ -1,25 +1,37 @@
-<table mat-table [dataSource]="basicdatabase" class="mat-elevation-z8" color="primary">
-	<ng-container matColumnDef="id">
-		<th mat-header-cell *matHeaderCellDef> ID </th>
-		<td mat-cell *matCellDef="let element"> {{element.id}} </td>
+<table mat-table [dataSource]="yourServices" class="mat-elevation-z8" color="primary">
+	<ng-container matColumnDef="name">
+		<th mat-header-cell *matHeaderCellDef> Name </th>
+		<td mat-cell *matCellDef="let element"> {{element.name}} </td>
 	</ng-container>
-	<ng-container matColumnDef="service">
-		<th mat-header-cell *matHeaderCellDef> Service </th>
-		<td mat-cell *matCellDef="let element"> {{element.service}} </td>
+	<ng-container matColumnDef="email">
+		<th mat-header-cell *matHeaderCellDef> Email </th>
+		<td mat-cell *matCellDef="let element"> {{element.email}} </td>
 	</ng-container>
-	<ng-container matColumnDef="price">
-		<th mat-header-cell *matHeaderCellDef> Price </th>
-		<td mat-cell *matCellDef="let element"> {{element.price}} </td>
+	<ng-container matColumnDef="telephone">
+		<th mat-header-cell *matHeaderCellDef> Telephone </th>
+		<td mat-cell *matCellDef="let element"> {{element.telephone}} </td>
+	</ng-container>
+	<ng-container matColumnDef="type">
+		<th mat-header-cell *matHeaderCellDef> Type </th>
+		<td mat-cell *matCellDef="let element"> {{element.type}} </td>
 	</ng-container>
 	<ng-container matColumnDef="status">
 		<th mat-header-cell *matHeaderCellDef> Status </th>
 		<td mat-cell *matCellDef="let element"> {{element.status}} </td>
 	</ng-container>
+	<ng-container matColumnDef="price">
+		<th mat-header-cell *matHeaderCellDef> Price </th>
+		<td mat-cell *matCellDef="let element"> {{element.price}} </td>
+	</ng-container>
+	<ng-container matColumnDef="time">
+		<th mat-header-cell *matHeaderCellDef> Time </th>
+		<td mat-cell *matCellDef="let element"> {{element.time}} </td>
+	</ng-container>
 	<ng-container matColumnDef="buttons">
 		<th mat-header-cell *matHeaderCellDef></th>
-		<td mat-cell *matCellDef="let element"> {{element.buttons}} </td>
+		<td mat-cell *matCellDef="let element"> Edit | Delete </td>
 	</ng-container>
 
-	<tr mat-header-row *matHeaderRowDef='["id", "service", "price", "status", "buttons"]'></tr>
-	<tr mat-row *matRowDef='let row; columns: ["id", "service", "price", "status", "buttons"]'></tr>
+	<tr mat-header-row *matHeaderRowDef='["name", "email", "telephone", "type", "status", "price", "time", "buttons"]'></tr>
+	<tr mat-row *matRowDef='let row; columns: ["name", "email", "telephone", "type", "status", "price", "time", "buttons"]'></tr>
 </table>

@@ -14,4 +14,8 @@ export class AdServiceComponent implements OnInit {
 	ngOnInit(): void {
 	}
 
+	setNewService(value: boolean) {
+		this.new_service = value;
+	}
+
 }

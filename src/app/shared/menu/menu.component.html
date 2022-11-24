@@ -11,15 +11,15 @@
 		<mat-icon>grid_view</mat-icon>
 		<span>Main</span>
 	</a>
-	<a mat-list-item routerLink="/login" (click)="close()">
+	<a *ngIf="loggedIn === null" mat-list-item routerLink="/login" (click)="close()">
 		<mat-icon>login</mat-icon>
 		<span>Login</span>
 	</a>
-	<a mat-list-item (click)="close()">
+	<a *ngIf="loggedIn != null" mat-list-item routerLink="/login" (click)="close(); onLogout()">
 		<mat-icon>logout</mat-icon>
 		<span>Logout</span>
 	</a>
-	<a mat-list-item routerLink="/profile" (click)="close()">
+	<a *ngIf="loggedIn != null" mat-list-item routerLink="/profile" (click)="close()">
 		<mat-icon>account_circle</mat-icon>
 		<span>My Profile</span>
 	</a>

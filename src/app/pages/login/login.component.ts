@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../shared/models/User';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
 	selector: 'app-login',
@@ -79,7 +80,8 @@ export class LoginComponent implements OnInit {
 				for (let i = 0; i < data.length; i++)
 					if (data[i].email === this.email.value)
 						if (data[i].password === this.password.value) {
-							console.log("Login success as " + data[i].name + "!");
+							localStorage.setItem('loggedInUser', JSON.stringify(data[i]));
+							this.router.navigate(['/main']);
 							break;
 						}
 
