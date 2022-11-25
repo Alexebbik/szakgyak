@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Service } from 'src/app/shared/models/Service';
 
 @Component({
 	selector: 'app-ad-service',
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class AdServiceComponent implements OnInit {
 
 	new_service = false;
+	service: any;
 
 	constructor() { }
 
@@ -18,4 +20,7 @@ export class AdServiceComponent implements OnInit {
 		this.new_service = value;
 	}
 
+	setService(value: Service) {
+		this.service = value;
+	}
 }

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -13,6 +13,10 @@ import { Service } from 'src/app/shared/models/Service';
 })
 export class NewServiceComponent implements OnInit {
 
+	title = "Register a new service!";
+	selectedOption = null;
+
+	@Input() service: any;
 	@Output() new_service = new EventEmitter<boolean>();
 
 	regForm = new FormGroup({
@@ -27,15 +31,34 @@ export class NewServiceComponent implements OnInit {
 	constructor(private router: Router, private http: HttpClient) { }
 
 	ngOnInit(): void {
-		if (AppComponent.loggedInUser != null) {
-			this.regForm.setValue({
-				name: AppComponent.loggedInUser?.name,
-				email: AppComponent.loggedInUser?.email,
-				telephone: AppComponent.loggedInUser?.telephone,
-				type: null,
-				price: null,
-				time: null
-			});
+		if (this.service != null && this.service != undefined) {
+			//this.title = "Edit your service!";
+			this.title = "Miért nem jó a type???";
+
+			if (AppComponent.loggedInUser != null) {
+
+				this.regForm.setValue({
+					name: AppComponent.loggedInUser?.name,
+					email: AppComponent.loggedInUser?.email,
+					telephone: AppComponent.loggedInUser?.telephone,
+					type: this.service.type,
+					price: this.service.price,
+					time: this.service.time
+				});
+			}
+		}
+		else {
+			this.title = "Register a new service!";
+
+			if (AppComponent.loggedInUser != null)
+				this.regForm.setValue({
+					name: AppComponent.loggedInUser?.name,
+					email: AppComponent.loggedInUser?.email,
+					telephone: AppComponent.loggedInUser?.telephone,
+					type: null,
+					price: null,
+					time: null
+				});
 		}
 	}
 

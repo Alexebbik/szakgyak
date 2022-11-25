@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
 import { User } from '../models/User';
 
 @Component({
@@ -33,5 +34,14 @@ export class MenuComponent implements OnInit {
 
 	onLogout() {
 		localStorage.clear();
+	}
+
+	rankCheck() {
+		if (AppComponent.loggedInUser === null)
+			alert("To open this page, you have to log in with an appropriate ranked user!");
+		else if (!AppComponent.loggedInUser?.rank)
+			alert("To open this page, you have to upgrade your rank!");
+		else
+			this.router.navigate(['/ad-service']);
 	}
 }

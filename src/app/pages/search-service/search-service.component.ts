@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
 import { Service } from 'src/app/shared/models/Service';
 
 @Component({
@@ -23,17 +25,60 @@ export class SearchServiceComponent implements OnInit {
 	];
 
 	date = Date.now();
-	touchUi = false;
 
-	/*basicdatabase: Service[] = [
-		{ id: 1, service: "valami", price: 69, status: "nincs", buttons: "edit, delete", name: "valaki", phone: "nincs", email: "nem is volt" },
-		{ id: 1, service: "semmi", price: 420, status: "van", buttons: "edit, delete", name: "petike", phone: "elhagyta", email: "meg tul kicsi" },
-		{ id: 1, service: "lehet", price: 666, status: "talán", buttons: "edit, delete", name: "", phone: "", email: "" },
-	];*/
+	servicesDatabase: any;
+	servicesDatabaseArray: Service[] = [];
 
-	constructor() { }
+	column = "Name";
+	public static Column = "Name";
+	direction = false;
+
+	constructor(private http: HttpClient) { }
 
 	ngOnInit(): void {
+		this.http.get<Array<Service>>("http://localhost:8080/services").subscribe(
+			data => {
+				this.servicesDatabaseArray = data;
+				this.servicesDatabase = new MatTableDataSource(data);
+			}
+		);
+	}
+
+	sortBy(column: string) {
+		if (this.column === column)
+			this.direction = !this.direction;
+		else {
+			this.column = column;
+			SearchServiceComponent.Column = column;
+			this.direction = false;
+		}
+
+		if (!this.direction)
+			this.servicesDatabaseArray.sort(this.compare);
+		else
+			this.servicesDatabaseArray.sort(this.compare).reverse();
+		this.servicesDatabase = new MatTableDataSource(this.servicesDatabaseArray);
+	}
+
+	compare(a: Service, b: Service) {
+		switch (SearchServiceComponent.Column) {
+			case 'Name':
+				return (a.name < b.name) ? -1 : (a.name > b.name ? 1 : 0);
+			case 'Email':
+				return (a.email < b.email) ? -1 : (a.email > b.email ? 1 : 0);
+			case 'Telephone':
+				return (a.telephone < b.telephone) ? -1 : (a.telephone > b.telephone ? 1 : 0);
+			case 'Type':
+				return (a.type < b.type) ? -1 : (a.type > b.type ? 1 : 0);
+			case 'Status':
+				return (a.status < b.status) ? -1 : (a.status > b.status ? 1 : 0);
+			case 'Price':
+				return (a.price < b.price) ? -1 : (a.price > b.price ? 1 : 0);
+			case 'Time':
+				return (a.time < b.time) ? -1 : (a.time > b.time ? 1 : 0);
+			default:
+				return 0;
+		}
 	}
 
 	search() {

@@ -1,12 +1,12 @@
 <div class="main_component">
 	<span>
 		<button mat-raised-button color="primary" (click)="new_service=false">Your Services</button>
-		<button mat-raised-button color="primary" (click)="new_service=true">New Service</button>
+		<button mat-raised-button color="primary" (click)="new_service=true; service=undefined">New Service</button>
 	</span>
 	<div *ngIf="new_service" class="inner-html">
-		<app-new-service (new_service)="setNewService($event)"></app-new-service>
+		<app-new-service (new_service)="setNewService($event)" [service]="service"></app-new-service>
 	</div>
 	<div *ngIf="!new_service" class="inner-html">
-		<app-your-services></app-your-services>
+		<app-your-services (new_service)="setNewService($event)" (service)="setService($event)"></app-your-services>
 	</div>
 </div>

@@ -42,4 +42,13 @@ export class AppComponent implements OnInit {
 	onLogout() {
 		localStorage.clear();
 	}
+
+	rankCheck() {
+		if (AppComponent.loggedInUser === null)
+			alert("To open this page, you have to log in with an appropriate ranked user!");
+		else if (!AppComponent.loggedInUser?.rank)
+			alert("To open this page, you have to upgrade your rank!");
+		else
+			this.router.navigate(['/ad-service']);
+	}
 }

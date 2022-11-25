@@ -6,3 +6,16 @@ table {
 .mat-header-cell {
 	text-align: center;
 }
+
+th:hover {
+	cursor: pointer;
+}
+
+mat-icon {
+	margin: 0 5px;
+}
+
+mat-icon:hover {
+	cursor: pointer;
+	color: rgb(56, 119, 109);
+}

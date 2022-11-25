@@ -1,5 +1,5 @@
 <div class="div-flex">
-	<h1>Register a new service!</h1>
+	<h1>{{title}}</h1>
 	<form [formGroup]="regForm" (ngSubmit)="onSubmit()">
 		<mat-form-field color="accent">
 			<mat-label for="name">Name: </mat-label>
@@ -18,7 +18,7 @@
 		</mat-form-field>
 		<mat-form-field color="accent">
 			<mat-label>Choose an option</mat-label>
-			<mat-select formControlName="type" required>
+			<mat-select formControlName="type" [value]="selectedOption" required>
 				<mat-option value="0">Option 0</mat-option>
 				<mat-option value="1">Option 1</mat-option>
 				<mat-option value="2">Option 2</mat-option>

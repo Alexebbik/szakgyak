@@ -39,6 +39,10 @@ table {
 	background-color: rgb(104, 228, 207);
 }
 
+th:hover {
+	cursor: pointer;
+}
+
 .mat-header-cell {
 	text-align: center;
 }
