@@ -21,11 +21,11 @@
 			<span>
 				<mat-form-field appearance="fill" class="price">
 					<mat-label>Min value</mat-label>
-					<input matInput type="number" [(ngModel)]="minValue" min="0" [max]="maxPrice">
+					<input matInput type="number" (change)="minLimit()" [(ngModel)]="minValue" min="0" [max]="maxValue">
 				</mat-form-field>
 				<mat-form-field appearance="fill" class="price">
 					<mat-label>Max value</mat-label>
-					<input matInput type="number" [(ngModel)]="maxValue" min="0" [max]="maxPrice">
+					<input matInput type="number" (change)="maxLimit()" [(ngModel)]="maxValue" [min]="minValue" [max]="maxPrice">
 				</mat-form-field>
 			</span>
 			<mat-form-field appearance="fill">
@@ -52,7 +52,7 @@
 		</ng-container>
 		<ng-container matColumnDef="type">
 			<th mat-header-cell *matHeaderCellDef (click)="sortBy('Type')"> Type {{column === 'Type' ? (direction ? '▲' : '▼') : ''}} </th>
-			<td mat-cell *matCellDef="let element"> {{element.type}} </td>
+			<td mat-cell *matCellDef="let element"> {{getServicetypeById(element.type)}} </td>
 		</ng-container>
 		<ng-container matColumnDef="status">
 			<th mat-header-cell *matHeaderCellDef (click)="sortBy('Status')"> Status {{column === 'Status' ? (direction ? '▲' : '▼') : ''}} </th>

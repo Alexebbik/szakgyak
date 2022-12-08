@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { Service } from 'src/app/shared/models/Service';
+import { Servicetype } from 'src/app/shared/models/Servicetype';
 
 @Component({
 	selector: 'app-search-service',
@@ -12,22 +13,21 @@ import { Service } from 'src/app/shared/models/Service';
 export class SearchServiceComponent implements OnInit {
 
 	searchText = '';
-	maxPrice = 1000;
+	maxPrice = 0;
 	minValue = 0;
 	maxValue = this.maxPrice;
 
 	services = new FormControl('');
 	timePicker = new FormControl('');
 
-	servicesList = [
-		"spraying",
-		"mowing"
-	];
+	serviceTypes: Servicetype[] = [];
+	servicesList: string[] = [];
 
 	date = Date.now();
 
 	servicesDatabase: any;
 	servicesDatabaseArray: Service[] = [];
+	filteredServicesDatabase: Service[] = [];
 
 	column = "Name";
 	public static Column = "Name";
@@ -36,12 +36,31 @@ export class SearchServiceComponent implements OnInit {
 	constructor(private http: HttpClient) { }
 
 	ngOnInit(): void {
+		this.http.get<Array<Servicetype>>("http://localhost:8080/servicetpyes").subscribe(
+			data => {
+				this.serviceTypes = data;
+				this.servicesList = data.map(x => x.type);
+			}
+		);
+
 		this.http.get<Array<Service>>("http://localhost:8080/services").subscribe(
 			data => {
 				this.servicesDatabaseArray = data;
+				this.filteredServicesDatabase = data;
 				this.servicesDatabase = new MatTableDataSource(data);
+
+				data.forEach(service => {
+					if (service.price > this.maxPrice)
+						this.maxPrice = service.price;
+				});
+
+				this.maxValue = this.maxPrice;
 			}
 		);
+	}
+
+	getServicetypeById(id: number): string | undefined {
+		return this.serviceTypes.find(x => x.id === id)?.type;
 	}
 
 	sortBy(column: string) {
@@ -54,10 +73,10 @@ export class SearchServiceComponent implements OnInit {
 		}
 
 		if (!this.direction)
-			this.servicesDatabaseArray.sort(this.compare);
+			this.filteredServicesDatabase.sort(this.compare);
 		else
-			this.servicesDatabaseArray.sort(this.compare).reverse();
-		this.servicesDatabase = new MatTableDataSource(this.servicesDatabaseArray);
+			this.filteredServicesDatabase.sort(this.compare).reverse();
+		this.servicesDatabase = new MatTableDataSource(this.filteredServicesDatabase);
 	}
 
 	compare(a: Service, b: Service) {
@@ -81,8 +100,64 @@ export class SearchServiceComponent implements OnInit {
 		}
 	}
 
-	search() {
-
+	minLimit() {
+		if (this.minValue < 0)
+			this.minValue = 0;
+		else if (this.minValue > this.maxValue)
+			this.minValue = this.maxValue;
 	}
 
+	maxLimit() {
+		if (this.maxValue < this.minValue)
+			this.maxValue = this.minValue;
+		else if (this.maxValue > this.maxPrice)
+			this.maxValue = this.maxPrice;
+	}
+
+	search() {
+		this.filteredServicesDatabase = [];
+
+		this.searchFilter();
+		this.priceFilter();
+		
+		this.servicesDatabase = new MatTableDataSource(this.filteredServicesDatabase);
+	}
+
+	searchFilter() {
+		if (this.searchText.length >= 3) {
+			let regex = RegExp(this.searchText); 
+
+			this.servicesDatabaseArray.filter(x => {
+				let y = null;
+
+				if (regex.test(x.name)) {
+					y = x;
+					this.filteredServicesDatabase.push(x);
+				}
+
+				if (y === null) {
+					if (regex.test(x.email)) {
+						y = x;
+						this.filteredServicesDatabase.push(x);
+					}
+					
+					if (y === null)
+						if (regex.test(x.telephone))
+							this.filteredServicesDatabase.push(x);
+				}
+			});
+		}
+		else
+			this.filteredServicesDatabase = this.servicesDatabaseArray;
+	}
+
+	priceFilter() {
+		let filtered = this.filteredServicesDatabase;
+		this.filteredServicesDatabase = [];
+
+		filtered.filter(x => {
+			if (x.price >= this.minValue && x.price <= this.maxValue)
+				this.filteredServicesDatabase.push(x);
+		});
+	}
 }

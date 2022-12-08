@@ -1,6 +1,7 @@
 package com.jusoft.smittek.agrizi.controller;
 
 import com.jusoft.smittek.agrizi.exception.ServiceNotFound;
+import com.jusoft.smittek.agrizi.exception.UserNotFound;
 import com.jusoft.smittek.agrizi.model.Service;
 import com.jusoft.smittek.agrizi.repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,11 @@ public class ServiceController {
     @GetMapping("/services")
     public List<Service> getAllServices() {
         return serviceRepository.findAll();
+    }
+
+    @GetMapping("/services/userid={id}")
+    public List<Service> getServicesByUserId(@PathVariable(value = "id") long userId) {
+      return serviceRepository.findByUserid(userId);
     }
 
     @PostMapping("/services")

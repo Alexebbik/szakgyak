@@ -32,15 +32,14 @@ export class NewServiceComponent implements OnInit {
 
 	ngOnInit(): void {
 		if (this.service != null && this.service != undefined) {
-			//this.title = "Edit your service!";
-			this.title = "Miért nem jó a type???";
+			this.title = "Edit your service!";
 
 			if (AppComponent.loggedInUser != null) {
 
 				this.regForm.setValue({
-					name: AppComponent.loggedInUser?.name,
-					email: AppComponent.loggedInUser?.email,
-					telephone: AppComponent.loggedInUser?.telephone,
+					name: this.service.name,
+					email: this.service.email,
+					telephone: this.service.telephone,
 					type: this.service.type,
 					price: this.service.price,
 					time: this.service.time
@@ -77,13 +76,24 @@ export class NewServiceComponent implements OnInit {
 			time: this.regForm.value.time
 		};
 
-		this.http.post<Service>("http://localhost:8080/services", service).subscribe({
-			next: _ => {
-				alert("The service has been created successfully!");
-				this.new_service.emit(false);
-			},
-			error: error => console.error('There was an error!', error.message)
-		})
+		if (this.service != null && this.service != undefined) {
+			this.http.put<Service>("http://localhost:8080/services/" + this.service.id, service).subscribe({
+				next: _ => {
+					alert("The service has been updated successfully!");
+					this.new_service.emit(false);
+				},
+				error: error => console.error('There was an error!', error.message)
+			})
+		}
+		else {
+			this.http.post<Service>("http://localhost:8080/services", service).subscribe({
+				next: _ => {
+					alert("The service has been created successfully!");
+					this.new_service.emit(false);
+				},
+				error: error => console.error('There was an error!', error.message)
+			})
+		}
 	}
 
 	getErrorMessage(type: string) {

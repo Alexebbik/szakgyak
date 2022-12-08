@@ -28,9 +28,8 @@ export class YourServicesComponent implements OnInit {
 	}
 
 	getServices() {
-		this.http.get<Array<Service>>("http://localhost:8080/services").subscribe(
+		this.http.get<Array<Service>>("http://localhost:8080/services/userid=" + AppComponent.loggedInUser?.id).subscribe(
 			data => {
-				data = data.filter(d => d.userid === AppComponent.loggedInUser?.id);
 				this.yourServicesArray = data;
 				this.yourServices = new MatTableDataSource(data);
 			}
