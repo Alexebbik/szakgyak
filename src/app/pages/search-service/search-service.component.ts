@@ -61,7 +61,6 @@ export class SearchServiceComponent implements OnInit {
 
 				this.maxValue = this.maxPrice;
 
-				this.length = data.length;
 				this.sortBy("Name");
 			}
 		);
@@ -71,11 +70,16 @@ export class SearchServiceComponent implements OnInit {
 		return this.serviceTypes.find(x => x.id === id)?.type;
 	}
 
+	getServicetypeByType(type: any): number | undefined {
+		return this.serviceTypes.find(x => x.type === type)?.id;
+	}
+
 	handlePageEvent(e: PageEvent) {
 		this.length = e.length;
 		this.pageSize = e.pageSize;
 		this.pageIndex = e.pageIndex;
 
+		this.length = this.filteredServicesDatabase.length;
 		this.viewerServicesDatabase = this.filteredServicesDatabase.slice(this.pageIndex * this.pageSize, (this.pageIndex + 1) * this.pageSize);
 		this.servicesDatabase = new MatTableDataSource(this.viewerServicesDatabase);
 	}
@@ -94,6 +98,8 @@ export class SearchServiceComponent implements OnInit {
 		else
 			this.filteredServicesDatabase.sort(this.compare).reverse();
 
+
+		this.length = this.filteredServicesDatabase.length;
 		this.viewerServicesDatabase = this.filteredServicesDatabase.slice(this.pageIndex * this.pageSize, (this.pageIndex + 1) * this.pageSize);
 		this.servicesDatabase = new MatTableDataSource(this.viewerServicesDatabase);
 	}
@@ -137,8 +143,13 @@ export class SearchServiceComponent implements OnInit {
 		this.filteredServicesDatabase = [];
 
 		this.searchFilter();
+		this.serviceFilter();
 		this.priceFilter();
+
+		this.sortBy(SearchServiceComponent.Column);
+		this.sortBy(SearchServiceComponent.Column);
 		
+		this.length = this.filteredServicesDatabase.length;
 		this.viewerServicesDatabase = this.filteredServicesDatabase.slice(this.pageIndex * this.pageSize, (this.pageIndex + 1) * this.pageSize);
 		this.servicesDatabase = new MatTableDataSource(this.viewerServicesDatabase);
 	}
@@ -169,6 +180,22 @@ export class SearchServiceComponent implements OnInit {
 		}
 		else
 			this.filteredServicesDatabase = this.servicesDatabaseArray;
+	}
+
+	serviceFilter() {
+		if (this.services.value != undefined && this.services.value != "") {	
+			let filtered = this.filteredServicesDatabase;
+			this.filteredServicesDatabase = [];
+
+			for (let i = 0; i < this.services.value?.length; i++) {
+				let service = this.getServicetypeByType(this.services.value[i]);
+				
+				filtered.filter(x => {
+					if (x.type === service)
+						this.filteredServicesDatabase.push(x);
+				})
+			}
+		}
 	}
 
 	priceFilter() {
