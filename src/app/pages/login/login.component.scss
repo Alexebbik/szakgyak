@@ -2,7 +2,12 @@ span {
 	padding: 5px;
 }
 
-mat-form-field {
+form {
 	width: 50%;
+	align-self: center;
+}
+
+mat-form-field {
+	width: 100%;
 	align-self: center;
 }

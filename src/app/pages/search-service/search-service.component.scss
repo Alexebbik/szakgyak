@@ -1,10 +1,22 @@
+.main-component {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 100vh;
+    
+    background-color: #14804d;
+    background-image: linear-gradient(#00FBFB, #14804d);
+    background-attachment: fixed;
+}
+
 span {
 	display: flex;
 	justify-content: space-between;
 }
 
 .spanSf {
-	
+	position: relative;
+	top: 5vh;
 }
 
 .divSf1, .divSf2 {
@@ -18,7 +30,12 @@ span {
 }
 
 .divSf2 {
-	height: 32vh;
+	height: 31vh;
+}
+
+.paginator {
+	background-color: rgb(100, 219, 199);
+	border-bottom: 1px solid rgb(58, 127, 115);
 }
 
 .label {
@@ -34,9 +51,12 @@ mat-form-field {
 }
 
 table {
+	position: relative;
+	top: 5.2vh;
 	width: 100%;
 	align-items: center;
 	background-color: rgb(104, 228, 207);
+	overflow-y: auto;
 }
 
 th:hover {

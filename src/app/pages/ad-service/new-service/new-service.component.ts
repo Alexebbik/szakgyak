@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { Service } from 'src/app/shared/models/Service';
+import { Servicetype } from 'src/app/shared/models/Servicetype';
 
 @Component({
 	selector: 'app-new-service',
@@ -14,6 +15,10 @@ import { Service } from 'src/app/shared/models/Service';
 export class NewServiceComponent implements OnInit {
 
 	title = "Register a new service!";
+	
+	serviceTypes: Servicetype[] = [];
+	servicesList: string[] = [];
+	
 	selectedOption = null;
 
 	@Input() service: any;
@@ -31,6 +36,13 @@ export class NewServiceComponent implements OnInit {
 	constructor(private router: Router, private http: HttpClient) { }
 
 	ngOnInit(): void {
+		this.http.get<Array<Servicetype>>("http://localhost:8080/servicetpyes").subscribe(
+			data => {
+				this.serviceTypes = data;
+				this.servicesList = data.map(x => x.type);
+			}
+		);
+		
 		if (this.service != null && this.service != undefined) {
 			this.title = "Edit your service!";
 
@@ -61,6 +73,10 @@ export class NewServiceComponent implements OnInit {
 		}
 	}
 
+	getServicetypeByType(type: any): number | undefined {
+		return this.serviceTypes.find(x => x.type === type)?.id;
+	}
+
 	onSubmit() {
 		if (!this.regForm.valid)
 			return;
@@ -70,7 +86,7 @@ export class NewServiceComponent implements OnInit {
 			name: this.regForm.value.name,
 			email: this.regForm.value.email,
 			telephone: this.regForm.value.telephone,
-			type: this.regForm.value.type,
+			type: this.getServicetypeByType(this.regForm.value.type),
 			status: true,
 			price: this.regForm.value.price,
 			time: this.regForm.value.time

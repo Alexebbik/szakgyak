@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { MatIconModule } from '@angular/material/icon';
 		MatInputModule,
 		MatSelectModule,
 		MatTableModule,
-		MatIconModule
+		MatIconModule,
+		MatPaginatorModule
 	]
 })
 export class AdServiceModule { }

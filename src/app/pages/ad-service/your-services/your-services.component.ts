@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { AppComponent } from 'src/app/app.component';
 import { Service } from 'src/app/shared/models/Service';
+import { Servicetype } from 'src/app/shared/models/Servicetype';
 
 @Component({
 	selector: 'app-your-services',
@@ -13,27 +15,48 @@ export class YourServicesComponent implements OnInit {
 
 	@Output() new_service = new EventEmitter<boolean>();
 	@Output() service = new EventEmitter<Service>();
+	
+	serviceTypes: Servicetype[] = [];
 
 	yourServices: any;
 	yourServicesArray: Service[] = [];
+	viewerServicesDatabase: Service[] = [];
 
-	column = "Name";
-	public static Column = "Name";
+	column = "";
+	public static Column = "";
 	direction = false;
+
+	pageIndex = 0;
+	length = 0;
+	pageSize = 10;
+	pageSizeOptions = [10, 25, 50];
 
 	constructor(private http: HttpClient) { }
 
 	ngOnInit(): void {
-		this.getServices();
-	}
+		this.http.get<Array<Servicetype>>("http://localhost:8080/servicetpyes").subscribe(data => this.serviceTypes = data);
 
-	getServices() {
 		this.http.get<Array<Service>>("http://localhost:8080/services/userid=" + AppComponent.loggedInUser?.id).subscribe(
 			data => {
 				this.yourServicesArray = data;
-				this.yourServices = new MatTableDataSource(data);
+
+				this.length = data.length;
+				this.sortBy("Name");
 			}
 		);
+	}
+
+	getServicetypeById(id: number): string | undefined {
+		return this.serviceTypes.find(x => x.id === id)?.type;
+	}
+
+	handlePageEvent(e: PageEvent) {
+		this.length = e.length;
+		this.pageSize = e.pageSize;
+		this.pageIndex = e.pageIndex;
+
+		this.viewerServicesDatabase = this.yourServicesArray.slice(this.pageIndex * this.pageSize, (this.pageIndex + 1) * this.pageSize);
+		this.yourServices = new MatTableDataSource(this.viewerServicesDatabase);
 	}
 
 	sortBy(column: string) {
@@ -49,7 +72,9 @@ export class YourServicesComponent implements OnInit {
 			this.yourServicesArray.sort(this.compare);
 		else
 			this.yourServicesArray.sort(this.compare).reverse();
-		this.yourServices = new MatTableDataSource(this.yourServicesArray);
+
+		this.viewerServicesDatabase = this.yourServicesArray.slice(this.pageIndex * this.pageSize, (this.pageIndex + 1) * this.pageSize);
+		this.yourServices = new MatTableDataSource(this.viewerServicesDatabase);
 	}
 
 	compare(a: Service, b: Service) {
@@ -83,7 +108,13 @@ export class YourServicesComponent implements OnInit {
 			this.http.delete<Service>("http://localhost:8080/services/" + id).subscribe({
 				next: _ => {
 					alert("The service has been deleted successfully.");
-					this.getServices();
+
+					this.http.get<Array<Service>>("http://localhost:8080/services/userid=" + AppComponent.loggedInUser?.id).subscribe(
+						data => {
+							this.yourServicesArray = data;
+							this.yourServices = new MatTableDataSource(data);
+						}
+					);
 				},
 				error: error => console.error('There was an error!', error.message)
 			})

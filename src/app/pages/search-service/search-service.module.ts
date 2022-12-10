@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
 	declarations: [
@@ -34,7 +35,8 @@ import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateMod
 		MatNativeDateModule,
 		NgxMatDatetimePickerModule,
 		NgxMatTimepickerModule,
-		NgxMatNativeDateModule
+		NgxMatNativeDateModule,
+		MatPaginatorModule
 	]
 })
 export class SearchServiceModule { }
