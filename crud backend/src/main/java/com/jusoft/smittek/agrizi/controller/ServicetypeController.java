@@ -2,7 +2,6 @@ package com.jusoft.smittek.agrizi.controller;
 
 
 import com.jusoft.smittek.agrizi.exception.ServicetypeNotFound;
-import com.jusoft.smittek.agrizi.model.Service;
 import com.jusoft.smittek.agrizi.model.Servicetype;
 import com.jusoft.smittek.agrizi.repository.ServicetypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;

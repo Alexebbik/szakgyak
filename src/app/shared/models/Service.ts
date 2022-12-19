@@ -5,7 +5,7 @@ export interface Service {
 	email: string;
 	telephone: string;
 	type: number;
-	status: boolean;
+	status: number;
 	price: number;
 	time: string;
 }

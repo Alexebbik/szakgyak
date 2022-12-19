@@ -66,3 +66,12 @@ th:hover {
 .mat-header-cell {
 	text-align: center;
 }
+
+mat-icon:hover:not(.blocked-service) {
+	cursor: pointer;
+	color: rgb(56, 119, 109);
+}
+
+.blocked-service {
+	color: rgb(150, 150, 150);
+}

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { AppComponent } from 'src/app/app.component';
 import { Service } from 'src/app/shared/models/Service';
 import { Servicetype } from 'src/app/shared/models/Servicetype';
 
@@ -206,5 +207,22 @@ export class SearchServiceComponent implements OnInit {
 			if (x.price >= this.minValue && x.price <= this.maxValue)
 				this.filteredServicesDatabase.push(x);
 		});
+	}
+
+	blockButton(service: Service) : boolean {
+		return service.status != 0 || service.userid === AppComponent.loggedInUser?.id;
+	}
+
+	onClick(service: Service) {
+		if (service.status === 0 && service.userid != AppComponent.loggedInUser?.id) {
+			if(confirm("Are you sure you want to reserve this service?")) {
+				service.status = 2;
+	
+				this.http.put<Service>("http://localhost:8080/services/" + service.id, service).subscribe({
+					next: _ => alert("The reservation intention has been sent to the advertiser."),
+					error: error => console.error('There was an error!', error.message)
+				});
+			}
+		}
 	}
 }

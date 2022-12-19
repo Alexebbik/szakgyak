@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../shared/models/User';
+import { Service } from 'src/app/shared/models/Service';
 
 @Component({
 	selector: 'app-login',
@@ -26,7 +27,6 @@ export class LoginComponent implements OnInit {
 
 	async login() {
 		this.loading = true;
-		console.log("yes");
 
 		this.http.get<Array<User>>("http://localhost:8080/users").subscribe({
 			next: data => {
@@ -35,6 +35,18 @@ export class LoginComponent implements OnInit {
 						if (data[i].password === this.password.value) {
 							localStorage.setItem('loggedInUser', JSON.stringify(data[i]));
 							this.router.navigate(['/main']);
+
+							if (data[i].rank) {
+								this.http.get<Array<Service>>("http://localhost:8080/services/userid=" + data[i].id).subscribe(
+									services => {
+										for (let j = 0; j < services.length; j++) 
+											if (services[j].status === 2) {
+												alert("The status of some of your services has been changed to \"Waiting for Acceptance\"!");
+											}
+									}
+								);
+							}
+							
 							break;
 						}
 

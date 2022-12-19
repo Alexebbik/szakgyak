@@ -1,7 +1,6 @@
 package com.jusoft.smittek.agrizi.controller;
 
 import com.jusoft.smittek.agrizi.exception.ServiceNotFound;
-import com.jusoft.smittek.agrizi.exception.UserNotFound;
 import com.jusoft.smittek.agrizi.model.Service;
 import com.jusoft.smittek.agrizi.repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +49,7 @@ public class ServiceController {
         service.setEmail(serviceDetails.getEmail());
         service.setTelephone(serviceDetails.getTelephone());
         service.setType(serviceDetails.getType());
-        service.setStatus(serviceDetails.isStatus());
+        service.setStatus(serviceDetails.getStatus());
         service.setPrice(serviceDetails.getPrice());
         service.setTime(serviceDetails.getTime());
         serviceRepository.save(service);

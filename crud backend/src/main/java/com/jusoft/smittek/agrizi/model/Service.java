@@ -19,7 +19,7 @@ public class Service {
     @Column(name = "type")
     private int type;
     @Column(name = "status")
-    private boolean status;
+    private int status;
     @Column(name = "price")
     private int price;
     @Column(name = "time")
@@ -29,7 +29,7 @@ public class Service {
         super();
     }
 
-    public Service(long id, long userid, String name, String email, String telephone, int type, boolean status, int price, String time) {
+    public Service(long id, long userid, String name, String email, String telephone, int type, int status, int price, String time) {
         this.id = id;
         this.userid = userid;
         this.name = name;
@@ -89,11 +89,11 @@ public class Service {
         this.type = type;
     }
 
-    public boolean isStatus() {
+    public int getStatus() {
     return status;
   }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
       this.status = status;
     }
 

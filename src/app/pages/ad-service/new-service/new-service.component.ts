@@ -19,7 +19,7 @@ export class NewServiceComponent implements OnInit {
 	serviceTypes: Servicetype[] = [];
 	servicesList: string[] = [];
 	
-	selectedOption = null;
+	selectedOption: any;
 
 	@Input() service: any;
 	@Output() new_service = new EventEmitter<boolean>();
@@ -40,41 +40,47 @@ export class NewServiceComponent implements OnInit {
 			data => {
 				this.serviceTypes = data;
 				this.servicesList = data.map(x => x.type);
+
+				if (this.service != null && this.service != undefined) {
+					this.title = "Edit your service!";
+		
+					if (AppComponent.loggedInUser != null) {
+		
+						this.regForm.setValue({
+							name: this.service.name,
+							email: this.service.email,
+							telephone: this.service.telephone,
+							type: this.service.type,
+							price: this.service.price,
+							time: this.service.time
+						});
+		
+						this.selectedOption = this.getServicetypeById(this.service.type);
+					}
+				}
+				else {
+					this.title = "Register a new service!";
+		
+					if (AppComponent.loggedInUser != null)
+						this.regForm.setValue({
+							name: AppComponent.loggedInUser?.name,
+							email: AppComponent.loggedInUser?.email,
+							telephone: AppComponent.loggedInUser?.telephone,
+							type: null,
+							price: null,
+							time: null
+						});
+				}
 			}
 		);
-		
-		if (this.service != null && this.service != undefined) {
-			this.title = "Edit your service!";
-
-			if (AppComponent.loggedInUser != null) {
-
-				this.regForm.setValue({
-					name: this.service.name,
-					email: this.service.email,
-					telephone: this.service.telephone,
-					type: this.service.type,
-					price: this.service.price,
-					time: this.service.time
-				});
-			}
-		}
-		else {
-			this.title = "Register a new service!";
-
-			if (AppComponent.loggedInUser != null)
-				this.regForm.setValue({
-					name: AppComponent.loggedInUser?.name,
-					email: AppComponent.loggedInUser?.email,
-					telephone: AppComponent.loggedInUser?.telephone,
-					type: null,
-					price: null,
-					time: null
-				});
-		}
 	}
 
 	getServicetypeByType(type: any): number | undefined {
 		return this.serviceTypes.find(x => x.type === type)?.id;
+	}
+
+	getServicetypeById(id: number): string | undefined {
+		return this.serviceTypes.find(x => x.id === id)?.type;
 	}
 
 	onSubmit() {
@@ -87,7 +93,7 @@ export class NewServiceComponent implements OnInit {
 			email: this.regForm.value.email,
 			telephone: this.regForm.value.telephone,
 			type: this.getServicetypeByType(this.regForm.value.type),
-			status: true,
+			status: 0,
 			price: this.regForm.value.price,
 			time: this.regForm.value.time
 		};

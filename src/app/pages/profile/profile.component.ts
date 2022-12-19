@@ -81,7 +81,11 @@ export class ProfileComponent implements OnInit {
 		};
 
 		this.http.put<User>("http://localhost:8080/users/" + AppComponent.loggedInUser?.id, user).subscribe({
-			next: data => console.log(data.name),
+			next: data => {
+				AppComponent.loggedInUser = data;
+				localStorage.setItem('loggedInUser', JSON.stringify(data));
+				alert("Your profile has been updated successfully!");
+			},
 			error: error => console.error('There was an error!', error.message)
 		})
 	}
