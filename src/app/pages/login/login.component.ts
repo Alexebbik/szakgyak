@@ -36,13 +36,21 @@ export class LoginComponent implements OnInit {
 							localStorage.setItem('loggedInUser', JSON.stringify(data[i]));
 							this.router.navigate(['/main']);
 
+							if (data[i].reservedservices > 0) {
+								data[i].reservedservices = 0;
+
+								this.http.put<User>("http://localhost:8080/users/" + data[i].id, data[i]).subscribe({
+									next: _ => alert("The statuses of some services you reserved have been changed."),
+									error: error => console.error('There was an error!', error.message)
+								})
+							}
+
 							if (data[i].rank) {
 								this.http.get<Array<Service>>("http://localhost:8080/services/userid=" + data[i].id).subscribe(
 									services => {
 										for (let j = 0; j < services.length; j++) 
-											if (services[j].status === 2) {
+											if (services[j].status === 2)
 												alert("The status of some of your services has been changed to \"Waiting for Acceptance\"!");
-											}
 									}
 								);
 							}

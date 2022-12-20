@@ -214,9 +214,10 @@ export class SearchServiceComponent implements OnInit {
 	}
 
 	onClick(service: Service) {
-		if (service.status === 0 && service.userid != AppComponent.loggedInUser?.id) {
+		if (service.status === 0 && service.userid != AppComponent.loggedInUser?.id && AppComponent.loggedInUser?.id != undefined) {
 			if(confirm("Are you sure you want to reserve this service?")) {
 				service.status = 2;
+				service.reserveduserid = AppComponent.loggedInUser?.id;
 	
 				this.http.put<Service>("http://localhost:8080/services/" + service.id, service).subscribe({
 					next: _ => alert("The reservation intention has been sent to the advertiser."),

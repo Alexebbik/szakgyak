@@ -8,4 +8,5 @@ export interface Service {
 	status: number;
 	price: number;
 	time: string;
+	reserveduserid: number | null;
 }

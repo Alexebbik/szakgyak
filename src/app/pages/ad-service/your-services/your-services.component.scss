@@ -15,9 +15,13 @@ mat-icon {
 	margin: 0 5px;
 }
 
-mat-icon:hover {
+mat-icon:hover:not(.blocked-service) {
 	cursor: pointer;
 	color: rgb(56, 119, 109);
+}
+
+.blocked-service {
+	color: rgb(150, 150, 150);
 }
 
 .paginator {

@@ -44,6 +44,15 @@ public class UserController {
         user.setEmail(userDetails.getEmail());
         user.setTelephone(userDetails.getTelephone());
         user.setRank(userDetails.isRank());
+        user.setReservedservices(userDetails.getReservedservices());
+        userRepository.save(user);
+        return ResponseEntity.ok().body(user);
+    }
+
+    @PutMapping("/users/reserved{id}")
+    public ResponseEntity<User> updateUserReserves(@PathVariable(value = "id") long userId, @RequestBody long reservedservices) throws UserNotFound {
+        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFound("User not found for this id : " + userId));
+        user.setReservedservices(user.getReservedservices() + reservedservices);
         userRepository.save(user);
         return ResponseEntity.ok().body(user);
     }

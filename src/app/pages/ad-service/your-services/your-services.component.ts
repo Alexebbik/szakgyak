@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AppComponent } from 'src/app/app.component';
 import { Service } from 'src/app/shared/models/Service';
 import { Servicetype } from 'src/app/shared/models/Servicetype';
+import { User } from 'src/app/shared/models/User';
 
 @Component({
 	selector: 'app-your-services',
@@ -116,6 +117,35 @@ export class YourServicesComponent implements OnInit {
 						}
 					);
 				},
+				error: error => console.error('There was an error!', error.message)
+			})
+		}
+	}
+
+	onAccept(service: Service) {
+		if(confirm("Are you sure you want to accept this reservation?")) {
+			this.http.put<number>("http://localhost:8080/users/reserved" + service.reserveduserid, 1).subscribe({
+				error: error => console.error('There was an error!', error.message)
+			})
+			
+			service.status = 1;
+
+			this.http.put<Service>("http://localhost:8080/services/" + service.id, service).subscribe({
+				error: error => console.error('There was an error!', error.message)
+			})
+		}
+	}
+
+	onReject(service: Service) {
+		if(confirm("Are you sure you want to reject this reservation?")) {
+			this.http.put<number>("http://localhost:8080/users/reserved" + service.reserveduserid, 1).subscribe({
+				error: error => console.error('There was an error!', error.message)
+			})
+
+			service.status = 0;
+			service.reserveduserid = null;
+			
+			this.http.put<Service>("http://localhost:8080/services/" + service.id, service).subscribe({
 				error: error => console.error('There was an error!', error.message)
 			})
 		}

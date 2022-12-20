@@ -52,6 +52,7 @@ public class ServiceController {
         service.setStatus(serviceDetails.getStatus());
         service.setPrice(serviceDetails.getPrice());
         service.setTime(serviceDetails.getTime());
+        service.setReserveduserid(serviceDetails.getReserveduserid());
         serviceRepository.save(service);
         return ResponseEntity.ok().body(service);
     }

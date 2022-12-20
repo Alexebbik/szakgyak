@@ -18,18 +18,21 @@ public class User {
     private String telephone;
     @Column(name = "rank")
     private boolean rank;
+    @Column(name = "reservedservices")
+    private long reservedservices;
 
     public User() {
         super();
     }
 
-    public User(long id, String name, String password, String email, String telephone, boolean rank) {
+    public User(long id, String name, String password, String email, String telephone, boolean rank, long reservedservices) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.email = email;
         this.telephone = telephone;
         this.rank = rank;
+        this.reservedservices = reservedservices;
     }
 
     public long getId() {
@@ -79,4 +82,12 @@ public class User {
     public void setRank(boolean rank) {
         this.rank = rank;
     }
+
+    public long getReservedservices() {
+    return reservedservices;
+  }
+
+    public void setReservedservices(long reservedservices) {
+    this.reservedservices = reservedservices;
+  }
 }

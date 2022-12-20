@@ -24,12 +24,14 @@ public class Service {
     private int price;
     @Column(name = "time")
     private String time;
+    @Column(name = "reserveduserid")
+    private long reserveduserid;
 
     public Service() {
         super();
     }
 
-    public Service(long id, long userid, String name, String email, String telephone, int type, int status, int price, String time) {
+    public Service(long id, long userid, String name, String email, String telephone, int type, int status, int price, String time, long reserveduserid) {
         this.id = id;
         this.userid = userid;
         this.name = name;
@@ -39,6 +41,7 @@ public class Service {
         this.status = status;
         this.price = price;
         this.time = time;
+        this.reserveduserid = reserveduserid;
     }
 
     public long getId() {
@@ -112,4 +115,12 @@ public class Service {
     public void setTime(String time) {
         this.time = time;
     }
+
+    public long getReserveduserid() {
+    return reserveduserid;
+  }
+
+    public void setReserveduserid(long reserveduserid) {
+    this.reserveduserid = reserveduserid;
+  }
 }
